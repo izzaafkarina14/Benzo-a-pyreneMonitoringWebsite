@@ -228,15 +228,7 @@
                 // Add the new data point to the arrays
                 timeData.push(formattedTime);
                 concentrationData.push(mq4);
-
-                // Limit the number of data points displayed to improve performance
-                /*const maxDataPoints = 10;
-                if (concentrationData.length > maxDataPoints) {
-                    timeData.shift();
-                    concentrationData.shift();
-                } */
                 
-
                 // Update the graph with the new data
                 Plotly.update('new-graph', {
                     x: [timeData],
