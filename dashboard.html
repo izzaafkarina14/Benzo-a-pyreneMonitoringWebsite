@@ -40,9 +40,9 @@
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="fas fa-question-circle"></i>
-                    <span>FAQ</span>
+                <a href="RSSI.html">
+                    <i class="fas fa-signal"></i>
+                    <span>RSSI</span>
                 </a>
             </li>
             <li class="logout">
@@ -91,7 +91,7 @@
                     </div>
                     <div class="time-card">
                         <div class="card-header">
-                            <div class="title">Benzo(a)pyrene Concentration</div>
+                            <div class="title">Benzo[a]pyrene Concentration</div>
                             <div class="time-info">
                                 <span class="value" id="concentration">663</span>
                             </div>
@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div class="download-container">
-                <h7 class="download-title">Download Data Monitoring</h7>
+                <h6 class="download-title">Download Data Monitoring</h6>
                 <div class="button-container">
                     <button onclick="startMonitoring()" class="start-button">START Monitoring</button>
                     <button onclick="stopMonitoring()" class="stop-button">STOP Monitoring</button>
@@ -156,13 +156,13 @@
         <script>
             // Konfigurasi Website Firebase
             const firebaseConfig = {
-                apiKey: "AIzaSyDuop32d-oAtIt0ZlDLAmLJg0BvlHrDuxk",
-                authDomain: "bismillah-ambil-data.firebaseapp.com",
-                databaseURL: "https://bismillah-ambil-data-default-rtdb.asia-southeast1.firebasedatabase.app",
-                projectId: "bismillah-ambil-data",
-                storageBucket: "bismillah-ambil-data.appspot.com",
-                messagingSenderId: "29482016853",
-                appId: "1:29482016853:web:a60b4a1f7bf0716faf74dc"
+                apiKey: "AIzaSyBnPADOix0EWKu29eysInzDlbA5Rvv9Lz8",
+                authDomain: "bismillah-ambil-data-beneran.firebaseapp.com",
+                databaseURL: "https://bismillah-ambil-data-beneran-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "bismillah-ambil-data-beneran",
+                storageBucket: "bismillah-ambil-data-beneran.appspot.com",
+                messagingSenderId: "514360576792",
+                appId: "1:514360576792:web:c873bfd362fef2628bac6d"
             };
 
             // Inisialisasi Firebase
@@ -197,7 +197,6 @@
                     tickformat: '%H:%M:%S',
                     showline: true,
                     showgrid: false,
-                    nticks: 20
                 },
                 yaxis: {
                     title: 'Konsentrasi BaP (ppm)',
@@ -231,11 +230,12 @@
                 concentrationData.push(mq4);
 
                 // Limit the number of data points displayed to improve performance
-                const maxDataPoints = 10;
+                /*const maxDataPoints = 10;
                 if (concentrationData.length > maxDataPoints) {
                     timeData.shift();
                     concentrationData.shift();
-                }
+                } */
+                
 
                 // Update the graph with the new data
                 Plotly.update('new-graph', {
