@@ -182,6 +182,7 @@
                 // Mendapatkan referensi database Firebase
                 var database = firebase.database();
                 var dataRef1 = database.ref('WiFi/RSSI');
+                var dataRef2 = database.ref('Receiver/Time');
               
 
                 // Create a Plotly graph
@@ -196,7 +197,7 @@
                     name: 'RSSI'
                 }], {
                     xaxis: {
-                        title: 'Paket Data',
+                        title: 'Paket Data ke-',
                         tickmode: 'linear',
                         tickangle: 0,
                         showline: true,
@@ -215,6 +216,7 @@
                 // Real-time data update
                 var distanceData = [];
                 var rssiData = [];
+                var receiverTime = [];
 
                 // Update the graph with real-time data
                 dataRef1.on('value', function (snapshot) {
@@ -241,6 +243,17 @@
                 window.onresize = function() {
                     Plotly.Plots.resize('new-graph');
                 };
+
+                // Update the graph with real-time data for Receiver Time
+                dataRef2.on('value', function (snapshot) {
+                    var time = snapshot.val();
+
+                    // Cek apakah data waktu berhasil diterima dari Firebase
+                    console.log("Received Receiver Time data:", time);
+
+                    // Memasukkan nilai waktu ke dalam array receiverTime
+                    receiverTime.push(time);
+                });
 
                 // Testing control
                 var isTesting = false;
@@ -270,9 +283,9 @@
                 }
 
                 function downloadCSVData() {
-                    var csvContent = "Distance,RSSI\n";
+                    var csvContent = "Paket Data ke-,RSSI,Receiver\n";
                     for (var i = 0; i < distanceData.length; i++) {
-                        csvContent += distanceData[i] + "," + rssiData[i] + "\n";
+                        csvContent += distanceData[i] + "," + rssiData[i] + "," + receiverTime[i] + "\n";
                     }
 
                     var blob = new Blob([csvContent], { type: 'text/csv' });
