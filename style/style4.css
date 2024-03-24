@@ -9,6 +9,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+#new-graph {
+    width: 100vw; /* Mengatur lebar kontainer grafik menjadi 100% */
+}
+
 body {
     display: flex;
 }
@@ -40,7 +44,7 @@ body {
 }
 
 .menu {
-    height: 88%;
+    height: 85%;
     position: relative;
     list-style: none;
     padding: 0;
@@ -86,7 +90,7 @@ body {
 .main-content {
     position: relative;
     background: #ebe9e9;
-    width: 171%;
+    width: 162%;
     padding: 1rem;
 }
 
@@ -232,7 +236,7 @@ body {
 }
 
 #new-graph {
-    width: 1713px;
+    width: 1700px;
 }
 
 .graph-card {
@@ -286,9 +290,13 @@ body {
     right: 10px;
 }
 
+#new-graph {
+    width: 100%; /* Mengatur lebar kontainer grafik menjadi 100% */
+}
+
 /* Menyesuaikan lebar grafik pada layar dengan lebar maksimal 768px */
 @media only screen and (max-width: 768px) {
-    .graph-card {
+    #new-graph {
         width: 100%; /* Atur lebar grafik menjadi 100% pada layar dengan lebar maksimal 768px */
     }
 }

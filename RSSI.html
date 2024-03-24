@@ -183,7 +183,6 @@
                 var database = firebase.database();
                 var dataRef1 = database.ref('WiFi/RSSI');
                 var dataRef2 = database.ref('Receiver/Time');
-              
 
                 // Create a Plotly graph
                 var graph = Plotly.newPlot('new-graph', [{
@@ -196,8 +195,9 @@
                     fillcolor: 'rgba(113, 99, 186, 0.5)',
                     name: 'RSSI'
                 }], {
+                    title: 'Grafik Hubungan RSSI dan Jumlah Data',
                     xaxis: {
-                        title: 'Paket Data ke-',
+                        title: 'Data ke-',
                         tickmode: 'linear',
                         tickangle: 0,
                         showline: true,
@@ -283,7 +283,7 @@
                 }
 
                 function downloadCSVData() {
-                    var csvContent = "Paket Data ke-,RSSI,Receiver\n";
+                    var csvContent = "Data ke-,RSSI,Receiver\n";
                     for (var i = 0; i < distanceData.length; i++) {
                         csvContent += distanceData[i] + "," + rssiData[i] + "," + receiverTime[i] + "\n";
                     }
