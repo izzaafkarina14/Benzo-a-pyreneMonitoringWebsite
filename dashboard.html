@@ -156,13 +156,13 @@
         <script>
             // Konfigurasi Website Firebase
             const firebaseConfig = {
-                apiKey: "AIzaSyBnPADOix0EWKu29eysInzDlbA5Rvv9Lz8",
-                authDomain: "bismillah-ambil-data-beneran.firebaseapp.com",
-                databaseURL: "https://bismillah-ambil-data-beneran-default-rtdb.asia-southeast1.firebasedatabase.app",
-                projectId: "bismillah-ambil-data-beneran",
-                storageBucket: "bismillah-ambil-data-beneran.appspot.com",
-                messagingSenderId: "514360576792",
-                appId: "1:514360576792:web:c873bfd362fef2628bac6d"
+                apiKey: "AIzaSyDx7mrbc4leZbB9bIN2eW9kGCzw2ZAu0ac",
+                authDomain: "komunikasi-data-1f4ca.firebaseapp.com",
+                databaseURL: "https://komunikasi-data-1f4ca-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "komunikasi-data-1f4ca",
+                storageBucket: "komunikasi-data-1f4ca.appspot.com",
+                messagingSenderId: "1048856340184",
+                appId: "1:1048856340184:web:28cd4fe7482e8d38c2d9ad"
             };
 
             // Inisialisasi Firebase
@@ -200,9 +200,9 @@
                     showgrid: false,
                 },
                 yaxis: {
-                    title: 'Konsentrasi BaP (ppm)',
-                    range: [100, 1000],
-                    dtick: 100,
+                    title: 'Konsentrasi BaP (PPB)',
+                    range: [0, 3000],
+                    dtick: 500,
                     showline: true,
                     showgrid: true,
                 }
@@ -213,7 +213,7 @@
                     var mq4 = getdata1.val();
 
                 // Update the concentration value on the page
-                document.getElementById('concentration').innerHTML = mq4 + " ppm";
+                document.getElementById('concentration').innerHTML = mq4 + " PPB";
 
                 // Measure time
                 var currentTime = new Date();

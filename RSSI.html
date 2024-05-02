@@ -167,13 +167,13 @@
             <script>
                 // Konfigurasi Website Firebase
                 const firebaseConfig = {
-                    apiKey: "AIzaSyBnPADOix0EWKu29eysInzDlbA5Rvv9Lz8",
-                    authDomain: "bismillah-ambil-data-beneran.firebaseapp.com",
-                    databaseURL: "https://bismillah-ambil-data-beneran-default-rtdb.asia-southeast1.firebasedatabase.app",
-                    projectId: "bismillah-ambil-data-beneran",
-                    storageBucket: "bismillah-ambil-data-beneran.appspot.com",
-                    messagingSenderId: "514360576792",
-                    appId: "1:514360576792:web:c873bfd362fef2628bac6d"
+                    apiKey: "AIzaSyDx7mrbc4leZbB9bIN2eW9kGCzw2ZAu0ac",
+                    authDomain: "komunikasi-data-1f4ca.firebaseapp.com",
+                    databaseURL: "https://komunikasi-data-1f4ca-default-rtdb.asia-southeast1.firebasedatabase.app",
+                    projectId: "komunikasi-data-1f4ca",
+                    storageBucket: "komunikasi-data-1f4ca.appspot.com",
+                    messagingSenderId: "1048856340184",
+                    appId: "1:1048856340184:web:28cd4fe7482e8d38c2d9ad"
                 };
     
                 // Inisialisasi Firebase
@@ -183,6 +183,8 @@
                 var database = firebase.database();
                 var dataRef1 = database.ref('WiFi/RSSI');
                 var dataRef2 = database.ref('Receiver/Time');
+                var dataRef3 = database.ref('Sampling ke-');
+                var dataRef4 = database.ref('MQ4 Sensor/Value');
 
                 // Create a Plotly graph
                 var graph = Plotly.newPlot('new-graph', [{
@@ -205,7 +207,7 @@
                     },
                     yaxis: {
                         title: 'RSSI (dbm)',
-                        range: [-90, 0],
+                        range: [-110, 0],
                         dtick: 100,
                         showline: true,
                         showgrid: false,
@@ -217,6 +219,8 @@
                 var distanceData = [];
                 var rssiData = [];
                 var receiverTime = [];
+                var samplingKe = [];
+                var mq4Value = [];
 
                 // Update the graph with real-time data
                 dataRef1.on('value', function (snapshot) {
@@ -255,6 +259,26 @@
                     receiverTime.push(time);
                 });
 
+                // Update the graph with real-time data for Sampling Ke
+                dataRef3.on('value', function (snapshot) {
+                    var sampling = snapshot.val();
+                    // Cek apakah data sampling ke berhasil diterima dari Firebase
+                    console.log("Received Sampling Ke data:", sampling);
+
+                    // Memasukkan nilai sampling ke dalam array samplingKe
+                    samplingKe.push(sampling);
+                });
+
+                // Update the graph with real-time data for MQ4 Value
+                dataRef4.on('value', function (snapshot) {
+                    var mq4 = snapshot.val();
+                    // Cek apakah data sampling ke berhasil diterima dari Firebase
+                    console.log("Received MQ4 Value:", mq4);
+
+                    // Memasukkan nilai sampling ke dalam array samplingKe
+                    mq4Value.push(mq4);
+                });
+        
                 // Testing control
                 var isTesting = false;
 
@@ -283,9 +307,9 @@
                 }
 
                 function downloadCSVData() {
-                    var csvContent = "Data ke-,RSSI,Receiver\n";
+                    var csvContent = "Data ke-,RSSI,Receiver,Sampling ke-,MQ4\n";
                     for (var i = 0; i < distanceData.length; i++) {
-                        csvContent += distanceData[i] + "," + rssiData[i] + "," + receiverTime[i] + "\n";
+                        csvContent += distanceData[i] + "," + rssiData[i] + "," + receiverTime[i] + "," + samplingKe[i] + "," + mq4Value[i] + "\n";
                     }
 
                     var blob = new Blob([csvContent], { type: 'text/csv' });
